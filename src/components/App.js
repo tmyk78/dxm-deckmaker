@@ -5,9 +5,9 @@ import SelectAlliance from './SelectAlliance';
 class App extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
+    console.log(this);
   }
-  
+
   render() {
     return (
       <div>
