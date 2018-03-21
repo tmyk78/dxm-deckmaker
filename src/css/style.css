@@ -1,0 +1,103 @@
+@import "~ress";
+
+html {
+  height: 100%;
+}
+
+body {
+  line-height: 1.5;
+  color: #393c4e;
+}
+
+.wrapper {
+  margin: 10px 0;
+  box-sizing: border-box;
+  min-height: calc(100vh - 10px * 2);
+}
+
+
+/* header */
+.header {
+  margin: 0 10px 20px;
+}
+
+.title {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+
+
+
+.content {
+  display: flex;
+  height: 100%;
+}
+
+.cardList {
+  width: 50%;
+  box-sizing: border-box;
+  min-height: calc(100vh - 96px - 20px - 20px);
+  padding: 10px;
+}
+
+.cardList:first-child {
+  border-right: 1px solid #393c4e;
+}
+
+.cardList__body {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Modules */
+
+/* selectBox */
+.selectBox__select {
+  background: transparent;
+  position: relative;
+  z-index: 1;
+  padding: 0 30px 0 10px;
+  border: 1px solid #393c4e;
+}
+
+.selectBox__select::-ms-expand {
+  display: none;
+}
+
+.selectBox {
+  position: relative;
+  display: inline-block;
+}
+
+
+.selectBox::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  right: 9px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 6px 0 6px;
+  border-color: #393c4e transparent transparent transparent;
+}
+
+/* button */
+.button {
+  border: 1px solid #393c4e;
+  padding: 0 4px;
+  border-radius: 5px;
+}
+
+/* card */
+.card {
+  width: 100px;
+}
+
+.card__image {
+  width: 100px;
+}
