@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
-import olympus from './components/cardList/olympus.js'
+import { functionAllCards, removeAllCards, cloneCarda } from './components/functionAllCards.js'
 
+import cardList from './components/cardList.js'
 
 class App extends Component {
 
@@ -19,46 +20,43 @@ class App extends Component {
     })
   }
 
-  onClick(e) {
+  onClick() {
+    const cardPool = document.querySelector('.cardPool')
 
+    functionAllCards(removeAllCards)
+
+    cardList[this.state.alliance].forEach(item => {
+      cardPool.insertAdjacentHTML('beforeend',
+      `<p class="card js-card"><img src="${item.path}" alt="${item.name}" width="100" height="auto"></p>`
+    )
+  }, false)
+
+    functionAllCards(cloneCarda)
   }
 
   render() {
     return (
       <div>
-        <h1>DXM DeckMaker</h1>
-        <select onChange={(event) => this.onChangeAlliance(event)}>
-          <option value="olympus">オリンポス</option>
-          <option value="trinity">トリニティ</option>
-          <option value="test">test</option>
-          <option value="aaa">aaa</option>
-        </select>
-        <button value={this.state.alliance} onClick={(e) => this.onClick(e)}>セレクト！</button>
-        <div className="cardPool">
-          {olympus.map((card) =>
-            <Test card={card} key={card.path} />
-          )}
-        </div>
-      </div>
-    )
+      <h1>DXM DeckMaker</h1>
+    <select onChange={(event) => this.onChangeAlliance(event)}>
+  <option value="olympus">オリンポス</option>
+      <option value="trinity">トリニティ</option>
+      </select>
+      <br />
+      <button onClick={() => this.onClick()}>セレクト！</button>
+    <div className="cardPool">
+      <h2>Card Pool</h2>
+    </div>
+    <div className="deckPool">
+      <h2>Deck Pool</h2>
+    </div>
+    </div>
+  )
   }
 }
 
-const Test = (props) => {
-  const aaa = props.card.path
-  console.log(aaa)
-  return(
-    <div>
-      {aaa}
-      <img src={aaa} alt="" />
-    </div>
-  )
-}
-
-
-
 ReactDOM.render(
-  <App />,
+<App />,
   document.getElementById('root')
 )
 
