@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-
-import { functionAllCards, removeAllCards, cloneCarda } from './js/functionAllCards.js'
+import { functionAllCards, removeAllCards, cloneCards } from './js/functionAllCards.js'
+import cardList from './js/cardList.js'
 
 import './css/style.css'
-
-import cardList from './js/cardList.js'
 
 class App extends Component {
 
@@ -33,7 +31,7 @@ class App extends Component {
       )
     }, false)
 
-    functionAllCards(cloneCarda)
+    functionAllCards(cloneCards)
   }
 
   render() {
@@ -41,7 +39,7 @@ class App extends Component {
       <div className="wrapper">
         <header className="header">
           <h1 className="title">DXM DeckMaker</h1>
-          <div class="selectBox">
+          <div className="selectBox">
             <select className="selectBox__select" onChange={(event) => this.onChangeAlliance(event)}>
               <option value="olympus">オリンポス</option>
               <option value="trinity">トリニティ</option>

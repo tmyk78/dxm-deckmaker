@@ -9,7 +9,7 @@ export const removeAllCards = (allCards) => {
   })
 }
 
-export const cloneCarda = (allCards) => {
+export const cloneCards = (allCards) => {
   const deckPool = document.querySelector('.deckPool')
 
   Array.from(allCards).forEach((element) => {
