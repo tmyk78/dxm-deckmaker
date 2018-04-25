@@ -186,7 +186,7 @@ const cardList = {
       name: 'ヴェネツィアの植物学者',
     },
     {
-      path: 'img/trinity/mexica_trinity_00005.png',
+      path: 'img/trinity/mexica_trinity_000005.png',
       name: '能天使 エクスシア',
     },
     {
