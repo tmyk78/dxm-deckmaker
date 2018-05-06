@@ -10,29 +10,78 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      alliance: 'olympus'
+      alliance: 'olympus',
+      candidatePool: [],
+      deckPool: []
     }
   }
 
+  // 勢力選択のセレクトボックスを変更した時
   onChangeAlliance(event) {
     this.setState({
-      alliance: event.target.value
+      alliance: event.target.value,
     })
   }
 
-  // onClickAllianceSelectButton() {
-  //   const cardPool = document.querySelector('.cardPool')
-  //
-  //   functionAllCards(removeAllCards)
-  //
-  //   cardList[this.state.alliance].forEach(item => {
-  //     cardPool.insertAdjacentHTML('beforeend',
-  //     `<div class="card js-card"><img src="${item.path}" alt="${item.name}" class="card__image"></div>`
-  //     )
-  //   }, false)
-  //
-  //   functionAllCards(cloneCards)
-  // }
+  // 勢力選択のセレクトボタンを押下した時
+  onClickAllianceSelectButton() {
+    this.setState({
+      candidatePool: cardList[this.state.alliance],
+      deckPool: []
+    })
+  }
+
+  // 候補カードをクリックした時
+  onClickCandidatePoolCard(event) {
+    const currentCardPath = event.target.getAttribute('src')
+
+
+
+    let number = 0
+
+    this.state.candidatePool.forEach((el) => {
+
+      if(el.path === currentCardPath) {
+
+        this.setState({
+          deckPool: this.state.deckPool.concat(this.state.candidatePool[number])
+        })
+
+
+
+
+      } else {
+        number++
+      }
+    })
+
+    const deckPool = document.querySelector('.js-deckPool')
+    const deckPoolCards = deckPool.querySelectorAll('.js-card')
+
+    let num = 0
+
+    Array.from(deckPoolCards).forEach((el) => {
+      el.dataset.number = num
+      num++
+    })
+
+  }
+
+  onClickDeckPoolCard(event) {
+
+    // console.log(event.currentTarget.dataset.number)
+
+    const aaa = event.currentTarget.dataset.number
+
+    console.log(aaa)
+
+    console.log(this.state.deckPool)
+
+    this.state.deckPool.splice(aaa, 1)
+
+  }
+
+
 
   render() {
     return (
@@ -45,22 +94,32 @@ class App extends Component {
               <option value="trinity">トリニティ</option>
             </select>
           </div>
-          {/*<button className="button" onClick={() => this.onClickAllianceSelectButton()}>セレクト</button>*/}
+          <button className="button" onClick={() => this.onClickAllianceSelectButton()}>セレクト</button>
         </header>
         <div className="content">
           <div className="cardList">
             <h2 className="cardList__title">Card Pool</h2>
-            <div className="cardList__body cardPool">
+            <div className="cardList__body candidatePool js-candidatePool">
               {
-                this.state.alliance && cardList[this.state.alliance].map((item) => {
-                  return <div className="card js-card" onClick={() => functionAllCards(cloneCards)} key={item.path}><img src={item.path} alt="" className="card__image" /></div>
+                this.state.candidatePool.map((item) => {
+                  return <div className="card js-card" onClick={(event) => this.onClickCandidatePoolCard(event)} key={item.path}>
+                    <img src={item.path} alt={item.name} className="card__image" />
+                  </div>
                 })
               }
             </div>
           </div>
           <div className="cardList">
             <h2 className="cardList__title">Deck Pool</h2>
-            <div className="cardList__body deckPool"></div>
+            <div className="cardList__body deckPool js-deckPool">
+              {
+                this.state.deckPool.map((item) => {
+                  return <div className="card js-card" onClick={(event) => this.onClickDeckPoolCard(event)} key={item.path} data-number="0">
+                    <img src={item.path} alt={item.name} className="card__image" />
+                  </div>
+                })
+              }
+            </div>
           </div>
         </div>
       </div>
